@@ -1,11 +1,11 @@
 # Flatten function
 def flatten(list):
     output = []
-    for item in list:
-        if type(item) == type([]):
-            output.extend(flatten(item))
+    for i in list:
+        if type(i) == type([]):
+            output.extend(flatten(i))
         else:
-            output.append(item)
+            output.append(i)
     return output    	
 
 # Power set function
@@ -34,6 +34,8 @@ def spiral(n, end_corner):
 	spi = []
 	spi = spiralNums(arr,n,spi)
 	return spi
+	#s = spiralOrder(spi,end_corner,n)
+	#return 
 	
 def spiralNums(list,n,arr):
 	for i in range(4):
@@ -46,10 +48,14 @@ def spiralNums(list,n,arr):
 	return arr
 	
 #def spiralOrder(arr, corner, n):
-#	list = []
-#	if corner == 1:
-#	if corner == 2:
-#		list.append(arr[1][0] + arr[0])
+#	matrix = []
+#	for i in range(n):
+#		list = []
+#		for j in range(n):
+#			list.append(j)
+#		matrix.append(list)
+# I made a matrix of random numbers to start off and I was going to somehow figure out
+# how to replace those numbers with the numbers that I created in the spiralNums function.	
 		
 		
 		
