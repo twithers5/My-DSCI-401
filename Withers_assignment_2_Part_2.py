@@ -7,6 +7,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import pprint
+from sklearn import linear_model
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import median_absolute_error
@@ -52,6 +53,8 @@ data_y = df['SalePrice']
 imp = preprocessing.Imputer(missing_values='NaN', strategy='mean', axis=0)
 data_x = imp.fit_transform(data_x)
 
+x_train, x_test, y_train, y_test = train_test_split(data_x, data_y, test_size = 0.2, random_state = 4)
+
 # Tests multiple different alphas to figure out which one is the best at at predicting
 # the sale prices of the houses by computing the R squared for each alpha
 #alphas = [5,6,7,8,9,10,11,12,13,14]
@@ -59,7 +62,7 @@ data_x = imp.fit_transform(data_x)
 #	test_mod = linear_model.Lasso(alpha=i, normalize=True, fit_intercept=True)
 #	test_mod.fit(x_train, y_train)
 #	preds = test_mod.predict(x_test)
-#	print('R^2 (Lasso Model with alpha=' + str(a) + '): ' + str(r2_score(y_test, preds)))
+#	print('R^2 (Lasso Model with alpha=' + str(i) + '): ' + str(r2_score(y_test, preds)))
 
 # Output:	
 #R^2 (Lasso Model with alpha=5): 0.911597248641
