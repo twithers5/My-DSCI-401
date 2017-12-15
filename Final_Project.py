@@ -1,5 +1,8 @@
 # DSCI 401 Final Project
-# Basic Linear Regression
+# This file creates a basic linear regression model to train and test the MLB data from
+# the 2010 to 2016 regular seasons and predict the teams' winning percentage based on the
+# teams' stats during the regular season. The out put is shown with a comment at the 
+# bottom of the file.
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -18,9 +21,7 @@ from sklearn import preprocessing
 # Read in data
 df = pd.read_csv('./data/MLB Stats 10-16.csv')
 
-# Removes "runs" column because it is the same data as the "rpg" column
-#del df['runs']
-
+# Sets features equal to the columns titles and removes the win percentage column
 features = list(df) 
 features.remove('win%')
 
@@ -38,7 +39,7 @@ features.remove('runs')
 # Sets the feature columns as the explanatory variables
 data_x = df[features]
 
-# Sets the sale price as the response variable
+# Sets the winning percentage as the response variable
 data_y = df['win%']
 
 # Imputing the column means for missing values by column
@@ -58,5 +59,5 @@ model1.fit(x_train,y_train)
 preds = model1.predict(x_test)
 print('R^2 (Model 1): ' + str(r2_score(y_test, preds)))
 
-# Data set A output:
+# 2010-2016 data set output:
 # R^2 (Model 1): 0.880319278696

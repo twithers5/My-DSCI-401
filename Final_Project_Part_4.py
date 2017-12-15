@@ -1,3 +1,8 @@
+# DSCI 401 Final Project
+# This file attempts to using bagging to help the model return better results and more
+# accurate results and produce a better model. The file is unable to run all the way
+# do to errors when errors on line 46.
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -28,13 +33,15 @@ features.remove('runs')
 # Sets the feature columns as the explanatory variables
 data_x = df[features]
 
-# Sets the sale price as the response variable
+# Sets the winning percentage as the response variable
 data_y = df['win%']
 
 # Imputing the column means for missing values by column
 imp = preprocessing.Imputer(missing_values='NaN', strategy='mean', axis=0)
 data_x = imp.fit_transform(data_x)
 
+# Attempts to preform bagging on the basic linear regression model to help receive more 
+# accurate results
 bagging_mod = ensemble.BaggingClassifier(linear_model.LogisticRegression(), n_estimators=200)
 k_fold = KFold(n_splits=5, shuffle=True, random_state=4) # Shuffling is needed since classes are ordered.
 bagging_mod_scores = cross_val_score(bagging_mod, data_x, data_y, scoring='f1_macro', cv=k_fold)
